@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid text-bg-secondary">
+      <a class="navbar-brand text-white" href="#">The American College</a>
+    <a class="navbar-brand" href="/">HOME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">    </a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="loginapp/logout">logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<br><br>
+
+
+
+<div class="container">
+    <h3 class="text-success">Create an Account</h3>
+<form method="post" action="register">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" style="width:30%" required>
+    </div>
+    <div class="mb-3">
+        <label for="password1">Password</label>
+        <input type="password" name="password1" class="form-control" style="width:30%" required>
+    </div>
+    <div class="mb-3">
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2" class="form-control" style="width:30%" required>
+    </div>
+   <button type="submit" class="btn btn-success">Submit</button>
+
+</form>
+<br>
+
+    </div>
+{% for regmsg in messages %}
+<pre class="text-danger"><h6>              {{regmsg}}</h6></pre>
+{% endfor %}
+
+<div>
+    <pre><h6>                  Do you have an account? <a href="login">Login here.</a> </h6></pre>
+</div>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
